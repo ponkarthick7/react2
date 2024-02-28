@@ -1,0 +1,42 @@
+.search::placeholder {
+    color: lightgrey;
+    
+}
+.search-bar{
+    background-color: #353535; 
+    border-radius:15px; 
+}
+
+.headers{
+    color: white;
+     font-size: 32px;
+      background-color: #2F3D46;
+}
+.bodycontent{
+    height: 750px;
+    padding-left: 24px;
+    background-color: #C9D2C5;
+}
+.leftside-bar{
+    height: 75%;
+    background-color: #353535; 
+    border-radius:15px;
+}
+.center-bar{
+    height: 25%;
+    
+}
+.centerbar-bg{
+    background-color: #353535;
+    border-radius: 15px;
+
+    
+}
+.footer{
+    height: 35%;
+    
+}
+.footer1{
+    background-color: #353535;
+    border-radius: 15px;
+}
