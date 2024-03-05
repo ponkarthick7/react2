@@ -1,33 +1,38 @@
-// const displayName = (name) =>{
-//     console.log(`My name is ${name}`);
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const methodOverride = require("method-override");
 
-// }
-// displayName(karthick)
+const studentController = require("./controllers/studentController");
+const mentorController = require("./controllers/mentorController");
 
+const app = express();
 
-// const getUserName = () =>{
-//     let name = null;
-//     setTimeout(()=>{
+require("dotenv").config();
 
-//         name = "ponkarthick"
-//         console.log(name);
+const dbUrl = process.env.DB_URL;
 
-//     },2000);
-// }
+mongoose
+  .connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error(err));
 
+app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(methodOverride("_method"));
+app.use(bodyParser.json());
+app.get("/", studentController.getStudents);
 
-// const getPastOrders = ()=>{
+app.post("/students", studentController.createStudent);
+app.post("/mentors", mentorController.createMentor);
+app.post("/students/assign", studentController.assignStudentToMentor);
+app.get("/students/withoutMentor", studentController.getStudentsWithoutMentor);
+app.put("/students/changeMentor", studentController.changeMentor);
+app.get("/students/particularMentor", studentController.getStudentsForParticularMentor);
+app.get("/students/previousMentor", studentController.getPreviousMentor);
 
-//     let orderDetails = null
-
-//     setTimeout (()=>{
-
-//         orderDetails = {
-//             OrderId:"200",
-//             amount : 1000,
-//             discount:45,
-//         };
-//     }, 2000)
-// }
-// getUserName();
-// getPastOrders();
+const PORT = process.env.PORT;
+app.listen(PORT, () => console.log(`Server started at http://localhost:${PORT}`));
