@@ -1,0 +1,48 @@
+<!-- // function printNumber (number){
+// setTimeout (()=>{
+
+//   console.log(number)
+//   if (number <10){
+// printNumber(number+1)
+
+//   }else {
+//     console.log('happy cool')
+//   }
+
+// },number*1000)
+
+// }
+
+// printNumber (1) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class ='container'>
+        <label for='urlInput'>Enter  URL</label>
+        <input type='text' id ='urlInput' placeholder="http://example.com" />
+        <button onClick="generateQRCode()"> Generate QR code </button>
+        <div id="qr code"></div>
+
+    </div>
+
+    <script>
+        function generateQRCode(){
+            var url= document.getElementById('urlInput').value;
+            var qrcodeDiv = document.getElementById('qrcode');
+            qrcodeDiv.innerHTML = '';
+
+            var qrcode = new QRCode(qrcodeDiv,{
+                text:url,
+                width:128,
+                height:128
+            });
+        }
+    </script>
+</body>
+</html>
